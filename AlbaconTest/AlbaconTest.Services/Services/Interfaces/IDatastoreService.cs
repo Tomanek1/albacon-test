@@ -1,6 +1,6 @@
 ﻿using AlbaconTest.Services.Models;
 
-namespace AlbaconTest.Services.Infrastructure.Interfaces
+namespace AlbaconTest.Services.Services.Interfaces
 {
     public interface IDatastoreService
     {

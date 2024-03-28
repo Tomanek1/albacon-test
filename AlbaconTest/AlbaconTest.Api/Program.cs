@@ -1,10 +1,10 @@
-using AlbaconTest.Services.Infrastructure.Interfaces;
 using AlbaconTest.Services.Models;
 using Microsoft.AspNetCore.Mvc;
 using AlbaconTest.Services.Infrastructure;
 using System.Text.Json;
 using AlbaconTest.Services.Extensions;
 using System.Net.Mime;
+using AlbaconTest.Services.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

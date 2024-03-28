@@ -2,9 +2,9 @@
 using AlbaconTest.Services.DatastoreLogic.Interfaces;
 using AlbaconTest.Services.Enums;
 using AlbaconTest.Services.Infrastructure;
-using AlbaconTest.Services.Infrastructure.Interfaces;
 using AlbaconTest.Services.Infrastructure.Models;
 using AlbaconTest.Services.Models;
+using AlbaconTest.Services.Services.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace AlbaconTest.Services.Services

@@ -1,6 +1,6 @@
-﻿using AlbaconTest.Services.Infrastructure.Interfaces;
-using AlbaconTest.Services.Infrastructure.Models;
+﻿using AlbaconTest.Services.Infrastructure.Models;
 using AlbaconTest.Services.Services;
+using AlbaconTest.Services.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AlbaconTest.Services.Infrastructure

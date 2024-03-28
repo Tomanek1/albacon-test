@@ -1,0 +1,45 @@
+@AlbaconTest.Api_HostAddress = http://localhost:5235
+@guid = 0d3b3b3b-1b1b-4b4b-9b9b-0b0b0b0b0b0b
+
+
+
+GET {{AlbaconTest.Api_HostAddress}}/documents/
+Accept: text/xml
+#Accept: application/json
+#Accept: application/x-msgpack
+
+###
+
+GET {{AlbaconTest.Api_HostAddress}}/documents/{{guid}}
+
+###
+
+POST {{AlbaconTest.Api_HostAddress}}/documents/
+Content-Type: application/json
+
+{
+  "identifier": "{{guid}}",
+  "tags": [
+    "tag_1",
+    "tag_2"
+  ],
+  "data": "<xml></ xml>"
+}
+
+###
+
+DELETE {{AlbaconTest.Api_HostAddress}}/documents/{{guid}}
+
+###
+
+PUT {{AlbaconTest.Api_HostAddress}}/documents/
+Content-Type: application/json
+
+{
+  "identifier": "{{guid}}",
+  "tags": [
+    "novy_tag_1",
+    "novy_tag_2"
+  ],
+  "data": "<xml>Testovací XML dokument 2</xml>"
+}

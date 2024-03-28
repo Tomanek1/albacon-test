@@ -5,6 +5,8 @@ using System.Text.Json;
 using AlbaconTest.Services.Extensions;
 using System.Net.Mime;
 using AlbaconTest.Services.Services.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +45,7 @@ app.MapGet("/documents/", async (
 
 
 app.MapGet("/documents/{id}", async (
-    Guid id,
+    [BindRequired] Guid id,
     HttpContext context,
     [FromServices] IDatastoreService datastoreService) =>
 {
@@ -62,7 +64,7 @@ app.MapGet("/documents/{id}", async (
 
 
 app.MapPost("/documents/", async (
-    [FromBody] Document document,
+    [Required, FromBody] Document document,
     [FromServices] IDatastoreService datastoreService) =>
 {
     Guid id = await datastoreService.Insert(document);
@@ -71,7 +73,7 @@ app.MapPost("/documents/", async (
 });
 
 app.MapPut("/documents/", async (
-    [FromBody] Document document,
+    [Required, FromBody] Document document,
     [FromServices] IDatastoreService datastoreService) =>
 {
     await datastoreService.Update(document);
@@ -79,7 +81,7 @@ app.MapPut("/documents/", async (
 });
 
 app.MapDelete("/documents/{id}", async (
-    Guid id,
+   [BindRequired] Guid id,
    [FromServices] IDatastoreService datastoreService) =>
 {
     await datastoreService.Delete(id);

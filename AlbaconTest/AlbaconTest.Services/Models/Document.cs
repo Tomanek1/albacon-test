@@ -1,4 +1,6 @@
-﻿namespace AlbaconTest.Services.Models;
+﻿using FluentValidation;
+
+namespace AlbaconTest.Services.Models;
 
 public class Document
 {
@@ -12,4 +14,13 @@ public class Document
     public string Data { get; set; }
 
 
+}
+
+public class DocumentValidator : AbstractValidator<Document>
+{
+    public DocumentValidator()
+    {
+        RuleFor(x => x.Tags).NotEmpty();
+        RuleFor(x => x.Data).NotEmpty();
+    }
 }

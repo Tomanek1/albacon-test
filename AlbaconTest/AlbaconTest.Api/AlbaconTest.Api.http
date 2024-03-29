@@ -28,7 +28,28 @@ Content-Type: application/json
 
 ###
 
+#Test funkènosti validace pøidáním prázdného dokumentu
+POST {{AlbaconTest.Api_HostAddress}}/documents/
+Content-Type: application/json
+
+###
+
+#Test funkènosti validace pøidáním nevalidního dokumentu
+POST {{AlbaconTest.Api_HostAddress}}/documents/
+Content-Type: application/json
+
+{
+  "identifier": "{{guid}}"
+}
+
+###
+
 DELETE {{AlbaconTest.Api_HostAddress}}/documents/{{guid}}
+
+###
+
+#Kontrola na prázdné volání DELETE
+DELETE {{AlbaconTest.Api_HostAddress}}/documents/
 
 ###
 

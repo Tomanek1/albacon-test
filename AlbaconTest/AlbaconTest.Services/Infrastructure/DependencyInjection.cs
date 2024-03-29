@@ -1,6 +1,8 @@
 ﻿using AlbaconTest.Services.Infrastructure.Models;
+using AlbaconTest.Services.Models;
 using AlbaconTest.Services.Services;
 using AlbaconTest.Services.Services.Interfaces;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AlbaconTest.Services.Infrastructure
@@ -14,6 +16,10 @@ namespace AlbaconTest.Services.Infrastructure
             services.AddSingleton<InMemoryStorage>();
 
             services.AddOptions<Option>().BindConfiguration("Options");
+
+
+            //Validators
+            services.AddScoped<IValidator<Document>, DocumentValidator>();
         }
 
     }

@@ -7,11 +7,14 @@ using System.Net.Mime;
 using AlbaconTest.Services.Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
+using AlbaconTest.Api.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.RegisterServices();
 
 var app = builder.Build();
@@ -45,7 +48,9 @@ app.MapGet("/documents/", async (
 
 
 app.MapGet("/documents/{id}", async (
-    [BindRequired] Guid id,
+    //Validace na pøítomnost základních typù se provádí automaticky
+    //int count,
+    Guid id,
     HttpContext context,
     [FromServices] IDatastoreService datastoreService) =>
 {
@@ -64,13 +69,17 @@ app.MapGet("/documents/{id}", async (
 
 
 app.MapPost("/documents/", async (
-    [Required, FromBody] Document document,
+    //Validace na referenèní typy se neprovádí automaticky
+    [Required, BindRequired, FromBody] Document document,
     [FromServices] IDatastoreService datastoreService) =>
 {
     Guid id = await datastoreService.Insert(document);
 
     return Results.CreatedAtRoute("GetDocumentById", new { Id = id });
-});
+})
+    //Fluent validace se provádí jen nad propertama modelu ne nad jeho instancí
+    .AddFluentValidationAutoValidation()
+    .AddEndpointFilter<EmptyModelValidatorFilter<Document>>();
 
 app.MapPut("/documents/", async (
     [Required, FromBody] Document document,

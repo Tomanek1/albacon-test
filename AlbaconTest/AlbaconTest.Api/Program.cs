@@ -34,6 +34,7 @@ app.MapGet("/documents/", async (
 {
     var result = await datastoreService.GetAll();
 
+    //Knihovna pro ContentNegotiation: https://andrewlock.net/adding-content-negotiation-to-minimal-apis-with-carter/
     //Jelikož Minimal API narozdíl od MVC neumí automaticky zpracovat Accept header, musíme to udìlat ruènì
     if (context.Request.Headers.Accept.Equals(MediaTypeNames.Text.Xml))
         return result.ToList().SerializeObject();
